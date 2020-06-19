@@ -70,45 +70,43 @@ namespace Admin_Izvestaji_API.Controllers
             public int Key { get; set; }
         }
 
-        // public class dataJson2
-        // {
-        //     public string from_date {get; set;}
+        public class dataJson2
+        {
+            public string from_date {get; set;}
+            public string to_date {get; set;}
+            public string sector {get; set;}
+            public string name {get; set;}
+            public string surname {get; set;}
+        }
 
-        //     public string to_date {get; set;}
-        //     public string sector {get; set;}
-        //     public string name {get; set;}
-        //     public string surname {get; set;}
-        // }
+        [HttpPost("filtar")]
+        [DisableCors]
+        public ActionResult PostFiltar(dataJson2 filter)
+        {
+            if (ModelState.IsValid)
+            {
+                var contextFiltar = new ContextAR();
 
-        // [HttpPut("filtar")]
-        // [DisableCors]
-        // public ActionResult PostFiltar(dataJson2 filter)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         var contextFiltar = new ContextAR();
+                var filt = new dataJson2();
+                {
+                    filt.from_date = filter.from_date;
+                    filt.to_date= filter.to_date;
+                    filt.sector = filter.sector;
+                    filt.name = filter.name;
+                    filt.surname = filter.surname;
+                }
+                contextFiltar.Add(filt);
+                contextFiltar.SaveChanges();
 
-        //         var = new ContextAR();
-        //         {
-        //             empToUpdate.Id = data.Id;
-        //             empToUpdate.Code = data.Code;
-        //             empToUpdate.Name = data.Name;
-        //             empToUpdate.Surname = data.Surname;
-        //             empToUpdate.Title = data.Title;
-        //             empToUpdate.Sector = data.Sector;
-        //         }
-        //         contextFiltar.Add()
-        //         ContextAR.SaveChanges();
+                return Content("Succes", "text/plain");
 
-        //         return Content("Succes", "text/plain");
+            }
 
-        //     }
-
-        //     else
-        //     {
-        //         return Content("Bad request", "text/plain");
-        //     }
-        // }
+            else
+            {
+                return Content("Bad request", "text/plain");
+            }
+        }
         
         //GET all sectors
         [Route("allSec")]

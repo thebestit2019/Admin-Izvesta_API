@@ -4,6 +4,13 @@ function Trazi() {
 
     tbody.innerHTML = "";
  
+    LoadFiltar ();
+      
+    CreateColumn();
+}
+
+function LoadFiltar() {
+
     let from_date = document.getElementById("from_date").value
     let from_date_forma = from_date.slice(8,10) + "." + from_date.slice(5,7) + "." + from_date.slice(0,4);
 
@@ -36,31 +43,7 @@ function Trazi() {
     var filterJson = JSON.stringify(postFilter);
     filtar.send(filterJson);
     alert("Uspesna unet filtar u bazu");
-      
-    CreateColumn();
-}
-
-
-// function loadFiltar() {
-
-//         let filtar = new XMLHttpRequest();
-        
-//         let postFilter = {};
-//         postFilter.from_date_forma = from_date_forma;
-//         postFilter.to_date_forma = to_date_forma;
-//         postFilter.sector = sector;
-//         postFilter.name = employe[0];
-//         postFilter.surname = employe[1];
-
-
-
-//         filtar.open('POST', '/api/filtar', true);
-//         filtar.setRequestHeader('Content-Type', 'application/json');
-
-//         var filterJson = JSON.stringify(postFilter);
-//         Filtar.send(filterJson);
-//         alert("Uspesna unet filtar u bazu");
-//     }  
+}  
 
 
 

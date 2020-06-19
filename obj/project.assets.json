@@ -12176,11 +12176,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dd\\Desktop\\ApiIzvestaj\\Admin-Izvestaji_API.csproj",
+      "projectUniqueName": "c:\\Users\\dd\\Desktop\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj",
       "projectName": "Admin-Izvestaji_API",
-      "projectPath": "C:\\Users\\dd\\Desktop\\ApiIzvestaj\\Admin-Izvestaji_API.csproj",
+      "projectPath": "c:\\Users\\dd\\Desktop\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj",
       "packagesPath": "C:\\Users\\dd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dd\\Desktop\\ApiIzvestaj\\obj\\",
+      "outputPath": "c:\\Users\\dd\\Desktop\\Admin-Izvesta_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
