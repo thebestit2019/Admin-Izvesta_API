@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/MAStyle.css">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <header>
+
+        <img src="logo.jpg">
+
+
+        <h1>Admin Modul</h1>
+
+    </header>
+    <main>
+        <div id="tableCont">
+            <table width="100%">
+                <col width="30%">
+                <col width="70%">
+                <tr>
+                    <td class="lbl"><label for="InId">Jmbg</label></td>
+                    <td><input type="text" id="InId"></td>
+                </tr>
+                <tr>
+                    <td class="lbl"><label for="InCode">Pin</label></td>
+                    <td><input type="text" id="InCode"></td>
+                </tr>
+                <tr>
+                    <td class="lbl"><label for="InName">Ime</label></td>
+                    <td><input type="text" id="InName"></td>
+                </tr>
+                <tr>
+                    <td class="lbl"><label for="InSurname">Prezime</label></td>
+                    <td><input type="text" id="InSurname"></td>
+                </tr>
+                <tr>
+                    <td class="lbl"><label for="InTitle">Radno mesto</label></td>
+                    <td><input type="text" id="InTitle"></td>
+                </tr>
+                <tr>
+                    <td class="lbl"><label for="InSector">Služba</label></td>
+                    <td><input type="text" id="InSector"></td>
+                </tr>
+                <tr>
+                    <td style="display: none;" class="lbl"><label for="InKey">Key</label></td>
+                    <td style="display: none;"><input type="number" id="InKey"></td>
+                </tr>
+                <tr>
+                    <td align="center"><input type="submit" id="Accept" value="Potvrdi"></td>
+                    <td align="center"><input type="submit" id="Change" value="Izmeni"></td>
+                    <td align="center"><input type="submit" id="Cancel" value="Odustani"></td>
+                </tr>
+
+            </table>
+        </div>
+        <div id="listCont">
+            <ul id="empList"></ul>
+        </div>
+    </main>
+
+    <script src="scripts/AMScript.js" async defer></script>
+</body>
+
+</html>

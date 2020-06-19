@@ -1,0 +1,116 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+header{
+    /* display: flex; */
+    flex-direction: row;
+    width: 100%;
+    /* justify-content: center; */
+    text-align: center;
+    border: 1px black solid;
+
+}
+header img{
+    width: 5em;
+    height: 5em;
+    float: left;
+    margin: 1em 2em
+}
+header h1{
+    margin-right: 7em;
+}
+main{
+    display: flex;
+    flex-direction: row;
+}
+#tableCont{
+    width: 60%;
+    border: 1px solid black;
+    margin: 1em;
+    margin-left: 2em;
+}
+label{
+    font-size: small;
+}
+
+#Accept, #Cancel, #Change{
+    margin-top: 1em;
+    width: 100px;
+
+}
+
+.lbl{
+    text-align: right;
+}
+
+
+input{
+    /* width: 180px; */
+    width: 80%;
+}
+
+#listCont{
+    width: 40%;
+    border: 1px dotted red;
+    margin: 1em;
+}
+table{
+    background-color: wheat;
+}
+.newEmp{
+    list-style-type: none;
+    margin-top: 1em;
+}
+/* --------------------------------- */
+#mainCont{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+#left{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+}
+
+#divFilter{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: auto;
+}
+
+#divTable{
+    background-color: turquoise;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+
+    
+}
+
+#right{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    justify-content: flex-start; 
+
+}
+.btn{
+    margin: 10%;
+}
+
+.thTable{
+    border: 1px solid black;
+    margin: 0px;
+    padding: 0px;  
+}
