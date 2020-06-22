@@ -42,6 +42,7 @@ function LoadFiltar() {
 
     var filterJson = JSON.stringify(postFilter);
     filtar.send(filterJson);
+    console.log(filterJson);
     alert("Uspesna unet filtar u bazu");
 }  
 
@@ -56,7 +57,7 @@ CreateColumn();
 
 function CreateColumn() {
 
-    fetch("/api/allTimesEmps/IT")
+    fetch("/api/allTimesEmps")
         .then(resp => resp.json())
         .then(elements => {
             elements.forEach(emp => {
@@ -67,7 +68,8 @@ function CreateColumn() {
 
                 let dOd = document.createElement("td");
                 tr.appendChild(dOd);
-                dOd.textContent = emp.Date;
+                let Date_forma = emp.Date.slice(8,10) + "." + emp.Date.slice(5,7) + "." + emp.Date.slice(0,4);
+                dOd.textContent = Date_forma;
                 dOd.className = "thTable";
 
                 let dDo = document.createElement("td");

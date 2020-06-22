@@ -47,12 +47,12 @@ namespace Admin_Izvestaji_API.Controllers
         }
 
         //GET api/values/allTimesEmps
-        [Route("allTimesEmps/{Sector}")]
+        [Route("allTimesEmps")]
         [DisableCors]
-        public JsonResult GetAllTimesEmps(string Sector)
+        public JsonResult GetAllTimesEmps()
         {
                  
-        var allTimesEmps = from Employee in Context.employee join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key orderby Time_in.Date where Employee.Sector == Sector   select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic};
+        var allTimesEmps = from Employee in Context.employee join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key orderby Time_in.Date, Time_in.Time    select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic};
 
 
             return new JsonResult(allTimesEmps, JsonSer);
@@ -79,34 +79,34 @@ namespace Admin_Izvestaji_API.Controllers
             public string surname {get; set;}
         }
 
-        [HttpPost("filtar")]
-        [DisableCors]
-        public ActionResult PostFiltar(dataJson2 filter)
-        {
-            if (ModelState.IsValid)
-            {
-                var contextFiltar = new ContextAR();
+        // [HttpPost("filtar")]
+        // [DisableCors]
+        // public ActionResult PostFiltar(dataJson2 filter)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         var contextFiltar = new ContextAR();
 
-                var filt = new dataJson2();
-                {
-                    filt.from_date = filter.from_date;
-                    filt.to_date= filter.to_date;
-                    filt.sector = filter.sector;
-                    filt.name = filter.name;
-                    filt.surname = filter.surname;
-                }
-                contextFiltar.Add(filt);
-                contextFiltar.SaveChanges();
+        //         var filt = new dataJson2();
+        //         {
+        //             filt.from_date = filter.from_date;
+        //             filt.to_date= filter.to_date;
+        //             filt.sector = filter.sector;
+        //             filt.name = filter.name;
+        //             filt.surname = filter.surname;
+        //         }
+        //         contextFiltar.Add(filt);
+        //         contextFiltar.SaveChanges();
 
-                return Content("Succes", "text/plain");
+        //         return Content("Succes", "text/plain");
 
-            }
+        //     }
 
-            else
-            {
-                return Content("Bad request", "text/plain");
-            }
-        }
+        //     else
+        //     {
+        //         return Content("Bad request", "text/plain");
+        //     }
+        // }
         
         //GET all sectors
         [Route("allSec")]
