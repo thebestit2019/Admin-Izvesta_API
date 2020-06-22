@@ -52,7 +52,7 @@ namespace Admin_Izvestaji_API.Controllers
         public JsonResult GetAllTimesEmps()
         {
                  
-        var allTimesEmps = from Employee in Context.employee join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key orderby Time_in.Date, Time_in.Time    select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic};
+        var allTimesEmps = from Employee in Context.employee join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key orderby Time_in.Date, Time_in.Time select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic};
 
 
             return new JsonResult(allTimesEmps, JsonSer);

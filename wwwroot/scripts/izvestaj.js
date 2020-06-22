@@ -1,5 +1,20 @@
 let tbody = document.getElementById("tBody");
 
+let date = new Date();
+document.getElementById("from_date").value = date.toLocaleDateString('en-CA');
+document.getElementById("to_date").value = date.toLocaleDateString('en-CA');
+
+
+
+CreateColumn();
+
+loadEmp();
+
+loadSector();
+
+
+
+
 function Trazi() {
 
     tbody.innerHTML = "";
@@ -8,6 +23,9 @@ function Trazi() {
       
     CreateColumn();
 }
+
+
+
 
 function LoadFiltar() {
 
@@ -37,7 +55,7 @@ function LoadFiltar() {
     postFilter.name = employe[0];
     postFilter.surname = employe[1];
 
-    filtar.open('POST', '/api/filtar', true);
+    filtar.open('GET', '/api/allTimesEmps', true);
     filtar.setRequestHeader('Content-Type', 'application/json');
 
     var filterJson = JSON.stringify(postFilter);
@@ -46,14 +64,6 @@ function LoadFiltar() {
     alert("Uspesna unet filtar u bazu");
 }  
 
-
-
-CreateColumn();
-    let date = new Date();
-    document.getElementById("from_date").value = date.toLocaleDateString('en-CA');
-    document.getElementById("to_date").value = date.toLocaleDateString('en-CA');
-
-//let Sektor = "IT" ;
 
 function CreateColumn() {
 
@@ -105,18 +115,20 @@ function CreateColumn() {
 }
 
 
-
-
 function Delete() {
     tbody.innerHTML = "";
 }
 
+
+
+
 function Print() {
-    var divToPrint = document.getElementById("divTable");
-    newWin = window.open("");
-    newWin.document.write(divToPrint.outerHTML);
-    newWin.print();
-    newWin.close();
+    var divToPrint = document.getElementById("divTable").innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = divToPrint;
+    window.print();
+    document.body.innerHTML = originalContents;
+    
 }
 
 
@@ -151,7 +163,7 @@ function loadEmp() {
             });
         })
 }
-loadEmp();
+
 
 
 
