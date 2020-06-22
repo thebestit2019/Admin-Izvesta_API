@@ -4,18 +4,20 @@ let date = new Date();
 document.getElementById("from_date").value = date.toLocaleDateString('en-CA');
 document.getElementById("to_date").value = date.toLocaleDateString('en-CA');
 
-
-
-CreateColumn();
-
 loadEmp();
 
 loadSector();
+
+LoadFiltar ();
+
+CreateColumn();
 
 
 
 
 function Trazi() {
+    document.getElementById("from_date").value = date.toLocaleDateString('en-CA');
+    document.getElementById("to_date").value = date.toLocaleDateString('en-CA');
 
     tbody.innerHTML = "";
  
@@ -205,7 +207,7 @@ function loadSector() {
 }
 
 
-loadSector();
+
 
 
 
