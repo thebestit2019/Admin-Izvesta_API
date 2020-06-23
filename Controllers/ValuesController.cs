@@ -47,15 +47,31 @@ namespace Admin_Izvestaji_API.Controllers
         }
 
         //GET api/values/allTimesEmps
-        [Route("allTimesEmps")]
+        [Route("allTimesEmps/{from_date_forma}/{to_date_forma}/{sector}/{name}/{surname}")]
         [DisableCors]
-        public JsonResult GetAllTimesEmps()
+        public JsonResult GetAllTimesEmps(string from_date_forma, string to_date_forma, string sector, string name, string surname)
         {
-                 
-        var allTimesEmps = from Employee in Context.employee join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key orderby Time_in.Date, Time_in.Time select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic};
+        try
+        {
+        var allTimesEmps = from Employee in Context.employee 
+        join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key
+        where Time_in.Date.CompareTo(from_date_forma) >= 0 && Time_in.Date.CompareTo(to_date_forma) <= 0  
+        where Employee.Sector == sector 
+        where Employee.Name == name
+        where Employee.Surname == surname
+        orderby Time_in.Date, Time_in.Time 
+        select new{ Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic};
+        return new JsonResult(allTimesEmps, JsonSer);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Data);
+            return new JsonResult(ex.Data);
+            
+        }
+        
 
-
-            return new JsonResult(allTimesEmps, JsonSer);
+            
         }
 
 

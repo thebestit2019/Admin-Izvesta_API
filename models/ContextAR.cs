@@ -13,7 +13,7 @@ namespace Admin_Izvestaji_API.models{
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
 
-            optionsBuilder.UseNpgsql(@"Server=89.216.116.26;Port=5435;Database=company_db;User Id=postgres;Password=firmica;");
+            optionsBuilder.UseNpgsql(@"Server=89.216.116.223;Port=5435;Database=company_db;User Id=postgres;Password=firmica;");
             base.OnConfiguring(optionsBuilder);
         }
     }

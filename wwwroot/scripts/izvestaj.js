@@ -4,20 +4,18 @@ let date = new Date();
 document.getElementById("from_date").value = date.toLocaleDateString('en-CA');
 document.getElementById("to_date").value = date.toLocaleDateString('en-CA');
 
-loadEmp();
 
-loadSector();
 
-LoadFiltar ();
 
-CreateColumn();
+// LoadFiltar ();
+
+// CreateColumn();
 
 
 
 
 function Trazi() {
-    document.getElementById("from_date").value = date.toLocaleDateString('en-CA');
-    document.getElementById("to_date").value = date.toLocaleDateString('en-CA');
+  
 
     tbody.innerHTML = "";
  
@@ -27,19 +25,24 @@ function Trazi() {
 }
 
 
-
+let to_date_forma;
+let to_date = document.getElementById("to_date").value;
+let from_date = document.getElementById("from_date").value;
+let from_date_forma;
+let sector = document.getElementById("sector").value;
+let employe = document.getElementById("employe").value.split(" ");
 
 function LoadFiltar() {
 
-    let from_date = document.getElementById("from_date").value
-    let from_date_forma = from_date.slice(8,10) + "." + from_date.slice(5,7) + "." + from_date.slice(0,4);
-
-    let to_date = document.getElementById("to_date").value
-    let to_date_forma = to_date.slice(8,10) + "." + to_date.slice(5,7) + "." + to_date.slice(0,4)
+    from_date = document.getElementById("from_date").value;
+    from_date_forma = from_date.slice(0,4) + "." + from_date.slice(5,7) + "." + from_date.slice(8,10);
     
-    let sector = document.getElementById("sector").value
+    to_date = document.getElementById("to_date").value;
+    to_date_forma = to_date.slice(0,4) + "." + to_date.slice(5,7) + "." + to_date.slice(8,10)
+        
+    sector = document.getElementById("sector").value
   
-    let employe = document.getElementById("employe").value.split(" ");
+    employe = document.getElementById("employe").value.split(" ");
 
     console.log(from_date_forma);
     console.log(to_date_forma);
@@ -49,27 +52,27 @@ function LoadFiltar() {
     console.log(employe[1]);
 
 
-    let filtar = new XMLHttpRequest();
-    let postFilter = {};
-    postFilter.from_date_forma = from_date_forma;
-    postFilter.to_date_forma = to_date_forma;
-    postFilter.sector = sector;
-    postFilter.name = employe[0];
-    postFilter.surname = employe[1];
+    // let filtar = new XMLHttpRequest();
+    // let postFilter = {};
+    // postFilter.from_date_forma = from_date_forma;
+    // postFilter.to_date_forma = to_date_forma;
+    // postFilter.sector = sector;
+    // postFilter.name = employe[0];
+    // postFilter.surname = employe[1];
 
-    filtar.open('GET', '/api/allTimesEmps', true);
-    filtar.setRequestHeader('Content-Type', 'application/json');
+    // filtar.open('GET', '/api/allTimesEmps', true);
+    // filtar.setRequestHeader('Content-Type', 'application/json');
 
-    var filterJson = JSON.stringify(postFilter);
-    filtar.send(filterJson);
-    console.log(filterJson);
-    alert("Uspesna unet filtar u bazu");
+    // var filterJson = JSON.stringify(postFilter);
+    // filtar.send(filterJson);
+    // console.log(filterJson);
+    // alert("Uspesna unet filtar u bazu");
 }  
 
 
 function CreateColumn() {
 
-    fetch("/api/allTimesEmps")
+    fetch(`/api/allTimesEmps/${from_date_forma}/${to_date_forma}/${sector}/${employe[0]}/${employe[1]}`)
         .then(resp => resp.json())
         .then(elements => {
             elements.forEach(emp => {
@@ -81,27 +84,27 @@ function CreateColumn() {
                 let dOd = document.createElement("td");
                 tr.appendChild(dOd);
                 let Date_forma = emp.Date.slice(8,10) + "." + emp.Date.slice(5,7) + "." + emp.Date.slice(0,4);
-                dOd.textContent = Date_forma;
+                dOd.innerHTML = Date_forma;
                 dOd.className = "thTable";
 
                 let dDo = document.createElement("td");
                 tr.appendChild(dDo);
-                dDo.textContent = emp.Time;
+                dDo.innerHTML = emp.Time;
                 dDo.className = "thTable";
 
                 let name = document.createElement("td");
                 tr.appendChild(name);
-                name.textContent = emp.Name + " " + emp.Surname;
+                name.innerHTML = emp.Name + " " + emp.Surname;
                 name.className = "thTable";
 
                 let sluzba = document.createElement("td");
                 tr.appendChild(sluzba);
-                sluzba.textContent = emp.Sector;
+                sluzba.innerHTML = emp.Sector;
                 sluzba.className = "thTable";
 
                 let JBMG = document.createElement("td");
                 tr.appendChild(JBMG);
-                JBMG.textContent = emp.Id;
+                JBMG.innerHTML = emp.Id;
                 JBMG.className = "thTable";
 
                 let PIC = document.createElement("td");
@@ -134,12 +137,10 @@ function Print() {
 }
 
 
-
-
 ///Pouleinting employee list
 
 
-let employe = document.getElementById("employe");
+let employeArr = document.getElementById("employe");
 
 let worker;
 let arrayEmploye = new Array();
@@ -147,7 +148,7 @@ let arrayEmploye = new Array();
 worker = document.createElement("option");
 worker.value = "AllEmps";
 worker.text = "Svi Zaposljeni";
-employe.appendChild(worker);
+employeArr.appendChild(worker);
 
 function loadEmp() {
     fetch("/api/allEmps")
@@ -159,12 +160,14 @@ function loadEmp() {
                 worker.value = emp.Name + " " + emp.Surname;
                 worker.text = emp.Name + " " + emp.Surname;
                 arrayEmploye.shift(emp.Name + " " + emp.Surname);
-                employe.appendChild(worker);
+                employeArr.appendChild(worker);
 
 
             });
         })
 }
+
+loadEmp();
 
 
 
@@ -173,15 +176,15 @@ function loadEmp() {
 
 
 
-let sector = document.getElementById("sector");
+let sectorArr = document.getElementById("sector");
 
 let optionSector;
-let sectorArray = new Array();
+//let sectorArray = new Array();
 
 optionSector = document.createElement("option");
 optionSector.value = "AllSectors";
 optionSector.text = "Sve sluzbe";
-sector.appendChild(optionSector);
+sectorArr.appendChild(optionSector);
 
 
 
@@ -195,7 +198,7 @@ function loadSector() {
                     optionSector = document.createElement("option");
                     optionSector.value = emp;
                     optionSector.text = emp;
-                    sector.appendChild(optionSector);
+                    sectorArr.appendChild(optionSector);
                 });
             })
 
@@ -205,6 +208,7 @@ function loadSector() {
     }
 
 }
+loadSector();
 
 
 
