@@ -51,28 +51,93 @@ namespace Admin_Izvestaji_API.Controllers
         [DisableCors]
         public JsonResult GetAllTimesEmps(string from_date_forma, string to_date_forma, string sector, string name, string surname)
         {
-        try
-        {
-        var allTimesEmps = from Employee in Context.employee 
-        join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key
-        where Time_in.Date.CompareTo(from_date_forma) >= 0 && Time_in.Date.CompareTo(to_date_forma) <= 0  
-        where Employee.Sector == sector 
-        where Employee.Name == name
-        where Employee.Surname == surname
-        orderby Time_in.Date, Time_in.Time 
-        select new{ Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic};
-        return new JsonResult(allTimesEmps, JsonSer);
+            try
+            {
+                var allTimesEmps = from Employee in Context.employee
+                                   join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key
+                                   where Time_in.Date.CompareTo(from_date_forma) >= 0 && Time_in.Date.CompareTo(to_date_forma) <= 0
+                                   where Employee.Sector == sector
+                                   where Employee.Name == name
+                                   where Employee.Surname == surname
+                                   orderby Time_in.Date, Time_in.Time
+                                   select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic };
+                return new JsonResult(allTimesEmps, JsonSer);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Data);
+                return new JsonResult(ex.Data);
+            }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Data);
-            return new JsonResult(ex.Data);
-            
-        }
-        
 
-            
+        //GET api/values/allTimesEmps
+        [Route("allTimesEmpsSec/{from_date_forma}/{to_date_forma}/{sector}")]
+        [DisableCors]
+        public JsonResult GetAllTimesEmpsSec(string from_date_forma, string to_date_forma, string sector)
+        {
+            try
+            {
+                var allTimesEmps = from Employee in Context.employee
+                                   join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key
+                                   where Time_in.Date.CompareTo(from_date_forma) >= 0 && Time_in.Date.CompareTo(to_date_forma) <= 0
+                                   where Employee.Sector == sector
+                                   orderby Time_in.Date, Time_in.Time
+                                   select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic };
+                return new JsonResult(allTimesEmps, JsonSer);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Data);
+                return new JsonResult(ex.Data);
+
+            }
         }
+
+         //GET api/values/allTimesEmps
+        [Route("allTimesEmpsName/{from_date_forma}/{to_date_forma}/{name}/{surname}")]
+        [DisableCors]
+        public JsonResult GetAllTimesEmpsName(string from_date_forma, string to_date_forma, string name, string surname)
+        {
+            try
+            {
+                var allTimesEmps = from Employee in Context.employee
+                                   join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key
+                                   where Time_in.Date.CompareTo(from_date_forma) >= 0 && Time_in.Date.CompareTo(to_date_forma) <= 0
+                                   where Employee.Name == name
+                                   where Employee.Surname == surname
+                                   orderby Time_in.Date, Time_in.Time
+                                   select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic };
+                return new JsonResult(allTimesEmps, JsonSer);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Data);
+                return new JsonResult(ex.Data);
+            }
+        }
+
+         //GET api/values/allTimesEmps
+        [Route("allTimesEmpsDate/{from_date_forma}/{to_date_forma}")]
+        [DisableCors]
+        public JsonResult GetAllTimesEmpsDate(string from_date_forma, string to_date_forma)
+        {
+            try
+            {
+                var allTimesEmps = from Employee in Context.employee
+                                   join Time_in in Context.time_in on Employee.Key equals Time_in.Emp_key
+                                   where Time_in.Date.CompareTo(from_date_forma) >= 0 && Time_in.Date.CompareTo(to_date_forma) <= 0
+                                   orderby Time_in.Date, Time_in.Time
+                                   select new { Time_in.Date, Time_in.Time, Employee.Name, Employee.Surname, Employee.Sector, Employee.Id, Time_in.Pic };
+                return new JsonResult(allTimesEmps, JsonSer);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Data);
+                return new JsonResult(ex.Data);
+            }
+        }
+
+
 
 
         public class dataJson
@@ -86,44 +151,8 @@ namespace Admin_Izvestaji_API.Controllers
             public int Key { get; set; }
         }
 
-        public class dataJson2
-        {
-            public string from_date {get; set;}
-            public string to_date {get; set;}
-            public string sector {get; set;}
-            public string name {get; set;}
-            public string surname {get; set;}
-        }
 
-        // [HttpPost("filtar")]
-        // [DisableCors]
-        // public ActionResult PostFiltar(dataJson2 filter)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         var contextFiltar = new ContextAR();
 
-        //         var filt = new dataJson2();
-        //         {
-        //             filt.from_date = filter.from_date;
-        //             filt.to_date= filter.to_date;
-        //             filt.sector = filter.sector;
-        //             filt.name = filter.name;
-        //             filt.surname = filter.surname;
-        //         }
-        //         contextFiltar.Add(filt);
-        //         contextFiltar.SaveChanges();
-
-        //         return Content("Succes", "text/plain");
-
-        //     }
-
-        //     else
-        //     {
-        //         return Content("Bad request", "text/plain");
-        //     }
-        // }
-        
         //GET all sectors
         [Route("allSec")]
         [DisableCors]
@@ -133,7 +162,7 @@ namespace Admin_Izvestaji_API.Controllers
 
             return new JsonResult(allSec.Distinct(), JsonSer);
         }
-        
+
 
         // POST 
         [HttpPost]
@@ -203,6 +232,6 @@ namespace Admin_Izvestaji_API.Controllers
             }
         }
 
-        
+
     }
 }

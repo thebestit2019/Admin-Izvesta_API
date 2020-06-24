@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Programiranje\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj": {}
+    "C:\\Users\\Marko\\Desktop\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj": {}
   },
   "projects": {
-    "C:\\Programiranje\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj": {
+    "C:\\Users\\Marko\\Desktop\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programiranje\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj",
+        "projectUniqueName": "C:\\Users\\Marko\\Desktop\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj",
         "projectName": "Admin-Izvestaji_API",
-        "projectPath": "C:\\Programiranje\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj",
-        "packagesPath": "C:\\Users\\cAc\\.nuget\\packages\\",
-        "outputPath": "C:\\Programiranje\\Admin-Izvesta_API\\obj\\",
+        "projectPath": "C:\\Users\\Marko\\Desktop\\Admin-Izvesta_API\\Admin-Izvestaji_API.csproj",
+        "packagesPath": "C:\\Users\\Marko\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Marko\\Desktop\\Admin-Izvesta_API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\cAc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Marko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
